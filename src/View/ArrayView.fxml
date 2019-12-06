@@ -17,16 +17,16 @@
    <children>
       <SplitPane dividerPositions="0.5" layoutX="1.0" prefHeight="535.0" prefWidth="815.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="519.0" prefWidth="313.0" style="-fx-background-color: #222;" SplitPane.resizableWithParent="false">
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="519.0" minWidth="313.0" prefHeight="540.0" prefWidth="313.0" style="-fx-background-color: #008080;" SplitPane.resizableWithParent="false">
                <children>
-                  <Pane fx:id="paneArray" prefHeight="212.0" prefWidth="313.0" visible="false">
+                  <Pane fx:id="paneArray" prefHeight="212.0" prefWidth="313.0">
                      <children>
-                        <Text fill="WHITE" layoutX="77.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Criação de Array">
+                        <Text fill="WHITE" layoutX="132.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Array">
                            <font>
-                              <Font name="SimSun" size="20.0" />
+                              <Font name="SimSun" size="22.0" />
                            </font>
                         </Text>
-                        <GridPane layoutX="57.0" layoutY="61.0">
+                        <GridPane layoutX="57.0" layoutY="61.0" prefHeight="105.0" prefWidth="200.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,15 +39,15 @@
                            <children>
                               <Label prefHeight="30.0" prefWidth="98.0" text="Tamanho:" textFill="WHITE">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </Label>
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" promptText="0" unFocusColor="#a19e9e" GridPane.columnIndex="1">
+                              <JFXTextField fx:id="tfTamanhoArray" focusColor="#cdcbcb" focusTraversable="false" prefHeight="31.0" prefWidth="50.0" promptText="0" unFocusColor="#a19e9e" GridPane.columnIndex="1">
                                  <font>
-                                    <Font size="15.0" />
+                                    <Font size="16.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXButton fx:id="buttonCriarArray" disable="true" focusTraversable="false" onAction="#criarArray" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #fff;" text="Criar Array" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <JFXButton fx:id="buttonCriarArray" focusTraversable="false" onAction="#criarArray" prefHeight="39.0" prefWidth="100.0" style="-fx-background-color: #fff;" text="Criar Array" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="14.0" />
                                  </font></JFXButton>
@@ -55,9 +55,9 @@
                         </GridPane>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneOS" layoutX="7.0" prefHeight="519.0" prefWidth="306.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Pane fx:id="paneOS" layoutX="7.0" prefHeight="519.0" prefWidth="306.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <GridPane layoutX="11.0" layoutY="59.0" prefHeight="304.0" prefWidth="292.0">
+                        <GridPane layoutX="11.0" layoutY="59.0" prefHeight="304.0" prefWidth="298.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -79,12 +79,12 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="22.0" prefWidth="181.0" text="Local:" textFill="WHITE" GridPane.rowIndex="1">
+                              <Label prefHeight="22.0" prefWidth="181.0" text="Cidade de destino:" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="30.0" prefWidth="174.0" text="Produto/Serviço" textFill="WHITE" GridPane.rowIndex="6">
+                              <Label prefHeight="30.0" prefWidth="174.0" text="Produto:" textFill="WHITE" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -109,126 +109,243 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" />
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <JFXTextField focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <JFXButton fx:id="buttonAdicionarOS" disable="true" focusTraversable="false" onAction="#adicionarOS" prefHeight="52.0" prefWidth="151.0" style="-fx-background-color: #fff;" text="Adicionar OS" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <JFXTextField fx:id="tfNumeroOS" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="tfCidadeDestino" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="tfNomeEmissor" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="tfDescricaoServico" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <JFXTextField fx:id="tfValor" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <JFXTextField fx:id="tfFormaPagamento" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <JFXTextField fx:id="tfProduto" focusColor="#cdcbcb" focusTraversable="false" unFocusColor="#a19e9e" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <JFXButton fx:id="buttonAdicionarOS" focusTraversable="false" onAction="#adicionarOS" prefHeight="52.0" prefWidth="151.0" style="-fx-background-color: #fff;" text="Adicionar OS" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                            </children>
                         </GridPane>
-                        <Text fill="WHITE" layoutX="77.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordem de Serviço">
+                        <Text fill="WHITE" layoutX="77.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordem de Serviço">
                            <font>
-                              <Font name="SimSun" size="20.0" />
+                              <Font name="SimSun" size="22.0" />
                            </font>
                         </Text>
                      </children>
                   </Pane>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="509.0" SplitPane.resizableWithParent="false">
                <children>
-                  <JFXButton focusTraversable="false" layoutX="14.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array0" focusTraversable="false" layoutX="15.0" layoutY="351.0" onAction="#posicao0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="62.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array1" focusTraversable="false" layoutX="63.0" layoutY="351.0" onAction="#posicao1" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="110.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array2" focusTraversable="false" layoutX="111.0" layoutY="351.0" onAction="#posicao2" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="158.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array3" focusTraversable="false" layoutX="159.0" layoutY="351.0" onAction="#posicao3" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="206.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array4" focusTraversable="false" layoutX="207.0" layoutY="351.0" onAction="#posicao4" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="255.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array5" focusTraversable="false" layoutX="256.0" layoutY="351.0" onAction="#posicao5" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="303.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array6" focusTraversable="false" layoutX="304.0" layoutY="351.0" onAction="#posicao6" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="351.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array7" focusTraversable="false" layoutX="352.0" layoutY="351.0" onAction="#posicao7" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="399.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array8" focusTraversable="false" layoutX="400.0" layoutY="351.0" onAction="#posicao8" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="447.0" layoutY="42.0" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9">
+                  <JFXButton fx:id="array9" focusTraversable="false" layoutX="448.0" layoutY="351.0" onAction="#posicao9" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="null" textFill="#d0c9c9" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <Button layoutX="14.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="0" textFill="#d0c9c9">
+                  <Button fx:id="a0" focusTraversable="false" layoutX="15.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[0]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="62.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="1" textFill="#d0c9c9">
+                  <Button fx:id="a1" focusTraversable="false" layoutX="63.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[1]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="110.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="2" textFill="#d0c9c9">
+                  <Button fx:id="a2" focusTraversable="false" layoutX="111.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[2]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="158.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="3" textFill="#d0c9c9">
+                  <Button fx:id="a3" focusTraversable="false" layoutX="159.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[3]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="207.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="4" textFill="#d0c9c9">
+                  <Button fx:id="a4" focusTraversable="false" layoutX="207.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[4]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="255.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="5" textFill="#d0c9c9">
+                  <Button fx:id="a5" focusTraversable="false" layoutX="255.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[5]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="303.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="6" textFill="#d0c9c9">
+                  <Button fx:id="a6" focusTraversable="false" layoutX="303.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[6]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="351.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="7" textFill="#d0c9c9">
+                  <Button fx:id="a7" focusTraversable="false" layoutX="351.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[7]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="399.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="8" textFill="#d0c9c9">
+                  <Button fx:id="a8" focusTraversable="false" layoutX="399.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[8]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="447.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #333; -fx-border-color: #fff;" text="9" textFill="#d0c9c9">
+                  <Button fx:id="a9" focusTraversable="false" layoutX="447.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" style="-fx-background-color: #fff;" text="[9]" textFill="#363434" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
+                  <GridPane layoutX="22.0" layoutY="85.0" prefHeight="210.0" prefWidth="427.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="88.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="164.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="10.0" prefWidth="263.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Número OS:" textFill="#333333">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Nome do emissor:" textFill="#333333" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Cidade de destino:" textFill="#333333" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Descrição do serviço:" textFill="#333333" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Valor:" textFill="#333333" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Forma de pagamento:" textFill="#333333" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="195.0" text="Produto:" textFill="#333333" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbNumeroOS" prefHeight="30.0" prefWidth="235.0" textFill="#333333" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbCidadeDestino" prefHeight="30.0" prefWidth="233.0" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbNomeEmissor" prefHeight="30.0" prefWidth="255.0" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbDescricao" prefHeight="30.0" prefWidth="249.0" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbValor" prefHeight="30.0" prefWidth="242.0" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbFormaPagamento" prefHeight="30.0" prefWidth="245.0" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbProduto" prefHeight="30.0" prefWidth="250.0" textFill="#333333" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Text fill="#333333" layoutX="167.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordem de Serviço">
+                     <font>
+                        <Font name="SimSun" size="22.0" />
+                     </font>
+                  </Text>
+                  <JFXButton fx:id="buttonNovoArray" focusTraversable="false" layoutX="14.0" layoutY="466.0" onAction="#novoArray" prefHeight="39.0" prefWidth="98.0" style="-fx-background-color: red;" text="Novo Array" textFill="#d0c9c9" visible="false" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="294.0" layoutY="48.0" prefHeight="30.0" prefWidth="65.0" text="Posição:" textFill="#333333">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="tfBuscar" focusColor="#333333" focusTraversable="false" layoutX="359.0" layoutY="48.0" prefHeight="31.0" prefWidth="50.0" promptText="0" unFocusColor="#444444">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXButton fx:id="btBuscar" focusTraversable="false" layoutX="422.0" layoutY="49.0" onAction="#buscarArray" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: green;" text="Buscar" textFill="#d0c9c9">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <Text fx:id="tituloArray" fill="#333333" layoutX="229.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Array" visible="false">
+                     <font>
+                        <Font name="SimSun" size="22.0" />
+                     </font>
+                  </Text>
                </children></AnchorPane>
         </items>
       </SplitPane>
