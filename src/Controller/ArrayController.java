@@ -7,10 +7,14 @@ package Controller;
 
 import Model.OS;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,8 +50,6 @@ public class ArrayController implements Initializable {
     private JFXTextField tfDescricaoServico;
     @FXML
     private JFXTextField tfValor;
-    @FXML
-    private JFXTextField tfFormaPagamento;
     @FXML
     private JFXTextField tfProduto;
     @FXML
@@ -114,10 +116,12 @@ public class ArrayController implements Initializable {
     private Text tituloArray;
     @FXML
     private Label lbFormaPagamento;
+    @FXML
+    private JFXComboBox<?> cbFormaPagamento;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        preencherCombobox();
     }
 
     int x = 0;
@@ -156,8 +160,8 @@ public class ArrayController implements Initializable {
                 || tfNomeEmissor.getText().equals("")
                 || tfDescricaoServico.getText().equals("")
                 || tfValor.getText().equals("")
-                || tfFormaPagamento.getText().equals("")
-                || tfProduto.getText().equals("")) {
+                || tfProduto.getText().equals("")
+                || cbFormaPagamento.getSelectionModel().isEmpty()) {
             teste++;
         }
 
@@ -168,7 +172,7 @@ public class ArrayController implements Initializable {
                 String nomeE = tfNomeEmissor.getText();
                 String descricaoS = tfDescricaoServico.getText();
                 double valor = Double.parseDouble(tfValor.getText());
-                String formaP = tfFormaPagamento.getText();
+                String formaP = cbFormaPagamento.getValue().toString();
                 String produto = tfProduto.getText();
 
                 os[y] = new OS(numOS.nextInt(999), cidadeD, nomeE, descricaoS, valor, formaP, produto);
@@ -244,6 +248,15 @@ public class ArrayController implements Initializable {
 
         tfBuscar.setText("");
         tfBuscar.setPromptText("");
+    }
+    
+    private void preencherCombobox(){
+        List formaP = new ArrayList();
+        formaP.add(0, "Cartão");
+        formaP.add(1, "Depósito");
+        formaP.add(2, "Dinheiro");
+        formaP.add(3, "Transferência");
+        cbFormaPagamento.setItems(FXCollections.observableArrayList(formaP));
     }
 
     private void exibirArrayGrafico() {
@@ -491,8 +504,8 @@ public class ArrayController implements Initializable {
         tfNomeEmissor.setText("");
         tfDescricaoServico.setText("");
         tfValor.setText("");
-        tfFormaPagamento.setText("");
         tfProduto.setText("");
+        cbFormaPagamento.getSelectionModel().clearSelection();
     }
 
     private void exibirIndiceArray() {
