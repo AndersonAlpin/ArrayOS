@@ -75,25 +75,25 @@ public class ArrayController implements Initializable {
     @FXML
     private JFXButton array9;
     @FXML
-    private Button a0;
+    private Label a0;
     @FXML
-    private Button a1;
+    private Label a1;
     @FXML
-    private Button a2;
+    private Label a2;
     @FXML
-    private Button a3;
+    private Label a3;
     @FXML
-    private Button a4;
+    private Label a4;
     @FXML
-    private Button a5;
+    private Label a5;
     @FXML
-    private Button a6;
+    private Label a6;
     @FXML
-    private Button a7;
+    private Label a7;
     @FXML
-    private Button a8;
+    private Label a8;
     @FXML
-    private Button a9;
+    private Label a9;
     @FXML
     private Label lbNumeroOS;
     @FXML
@@ -156,7 +156,7 @@ public class ArrayController implements Initializable {
             esconderArrayGrafico();
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
-            alert.setHeaderText("Número inválido");
+            alert.setHeaderText("Número inválido.");
             alert.setContentText("Digite um número entre 1 e 10.");
             alert.show();
         }
@@ -193,14 +193,14 @@ public class ArrayController implements Initializable {
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("ArrayOS");
-                alert.setHeaderText("Array completo");
+                alert.setHeaderText("Array completo.");
                 alert.setContentText("Não existe mais espaço no array.");
                 alert.show();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
-            alert.setHeaderText("Formulário imcompleto!");
+            alert.setHeaderText("Formulário imcompleto.");
             alert.setContentText("Preencha todos os campos.");
             alert.show();
         }
@@ -236,7 +236,7 @@ public class ArrayController implements Initializable {
                 } else {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("ArrayOS");
-                    alert.setHeaderText("Posição vazia!");
+                    alert.setHeaderText("Posição vazia.");
                     alert.setContentText("Não existe dados nesta posição do array.");
                     alert.show();
                 }
@@ -244,16 +244,16 @@ public class ArrayController implements Initializable {
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("ArrayOS");
-                alert.setHeaderText("Posição inválida!");
-                alert.setContentText("Digite um índice entre 0 e " + (os.length - 1));
+                alert.setHeaderText("Posição inválida.");
+                alert.setContentText("Digite um índice entre 0 e " + (os.length - 1 + "."));
                 alert.show();
             }
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
-            alert.setHeaderText("Nenhum número informado!");
-            alert.setContentText("Informe um número e tente novamente");
+            alert.setHeaderText("Nenhum número informado.");
+            alert.setContentText("Informe um número e tente novamente.");
             alert.show();
         }
 
@@ -550,7 +550,7 @@ public class ArrayController implements Initializable {
             
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
-            alert.setHeaderText("Posição vazia!");
+            alert.setHeaderText("Posição vazia.");
             alert.setContentText("Não existe dados nesta posição do array.");
             alert.show();
         }
