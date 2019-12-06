@@ -315,11 +315,6 @@
                         <Font name="SimSun" size="22.0" />
                      </font>
                   </Text>
-                  <JFXButton fx:id="buttonNovoArray" focusTraversable="false" layoutX="14.0" layoutY="466.0" onAction="#novoArray" prefHeight="39.0" prefWidth="98.0" style="-fx-background-color: red;" text="Novo Array" textFill="#d0c9c9" visible="false" AnchorPane.leftAnchor="14.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
                   <Label layoutX="304.0" layoutY="49.0" prefHeight="30.0" prefWidth="48.0" text="Índice:" textFill="#333333">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -340,6 +335,45 @@
                         <Font name="SimSun" size="22.0" />
                      </font>
                   </Text>
+                  <JFXButton fx:id="buttonNovoArray" focusTraversable="false" layoutX="14.0" layoutY="466.0" onAction="#novoArray" prefHeight="39.0" prefWidth="98.0" style="-fx-background-color: red;" text="Novo Array" textFill="#d0c9c9" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="475.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <Pane fx:id="paneInfoArray" layoutX="18.0" layoutY="436.0" prefHeight="37.0" prefWidth="427.0" visible="false">
+                     <children>
+                        <Label layoutX="4.0" layoutY="1.0" prefHeight="30.0" prefWidth="88.0" text="Array Lenght:" textFill="#333333">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbArrayLenght" layoutX="92.0" layoutY="1.0" prefHeight="30.0" prefWidth="24.0" text="0" textFill="#333333">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="121.0" layoutY="1.0" prefHeight="30.0" prefWidth="71.0" text="First Index:" textFill="#333333">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbFirstIndex" layoutX="192.0" layoutY="1.0" prefHeight="30.0" prefWidth="24.0" text="0" textFill="#333333">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="221.0" layoutY="1.0" prefHeight="30.0" prefWidth="71.0" text="Last Index:" textFill="#333333">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbLastIndex" layoutX="292.0" layoutY="1.0" prefHeight="30.0" prefWidth="24.0" text="0" textFill="#333333">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
                </children></AnchorPane>
         </items>
       </SplitPane>

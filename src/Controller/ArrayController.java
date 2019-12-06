@@ -118,6 +118,14 @@ public class ArrayController implements Initializable {
     private Label lbFormaPagamento;
     @FXML
     private JFXComboBox<?> cbFormaPagamento;
+    @FXML
+    private Label lbArrayLenght;
+    @FXML
+    private Label lbFirstIndex;
+    @FXML
+    private Label lbLastIndex;
+    @FXML
+    private Pane paneInfoArray;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,6 +146,9 @@ public class ArrayController implements Initializable {
 
         if (x > 0 && x <= 10) {
             os = new OS[x];
+            lbArrayLenght.setText(os.length + "");
+            lbFirstIndex.setText("0");
+            lbLastIndex.setText(os.length - 1 + "");
             exibirArrayGrafico();
             paneOS.setVisible(true);
             paneArray.setVisible(false);
@@ -267,6 +278,7 @@ public class ArrayController implements Initializable {
                 a0.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 2:
                 esconderArrayGrafico();
@@ -276,6 +288,7 @@ public class ArrayController implements Initializable {
                 a1.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 3:
                 esconderArrayGrafico();
@@ -287,6 +300,7 @@ public class ArrayController implements Initializable {
                 a2.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 4:
                 esconderArrayGrafico();
@@ -300,6 +314,7 @@ public class ArrayController implements Initializable {
                 a3.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 5:
                 esconderArrayGrafico();
@@ -315,6 +330,7 @@ public class ArrayController implements Initializable {
                 a4.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 6:
                 esconderArrayGrafico();
@@ -332,6 +348,7 @@ public class ArrayController implements Initializable {
                 a5.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 7:
                 esconderArrayGrafico();
@@ -351,6 +368,7 @@ public class ArrayController implements Initializable {
                 a6.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 8:
                 esconderArrayGrafico();
@@ -372,6 +390,7 @@ public class ArrayController implements Initializable {
                 a7.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 9:
                 esconderArrayGrafico();
@@ -395,6 +414,7 @@ public class ArrayController implements Initializable {
                 a8.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
             case 10:
                 esconderArrayGrafico();
@@ -420,6 +440,7 @@ public class ArrayController implements Initializable {
                 a9.setVisible(true);
                 buttonNovoArray.setVisible(true);
                 tituloArray.setVisible(true);
+                paneInfoArray.setVisible(true);
                 break;
         }
     }
@@ -447,6 +468,7 @@ public class ArrayController implements Initializable {
         a9.setVisible(false);
         buttonNovoArray.setVisible(false);
         tituloArray.setVisible(false);
+        paneInfoArray.setVisible(false);
     }
 
     private void preencherArrayGrafico() {
@@ -518,6 +540,14 @@ public class ArrayController implements Initializable {
             lbProduto.setText(os[p].getProduto() + "");
             lbFormaPagamento.setText(os[p].getFormaPagamento() + "");
         } else {
+            lbNumeroOS.setText("null");
+            lbCidadeDestino.setText("null");
+            lbNomeEmissor.setText("null");
+            lbDescricao.setText("null");
+            lbValor.setText("null");
+            lbProduto.setText("null");
+            lbFormaPagamento.setText("null");
+            
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
             alert.setHeaderText("Posição vazia!");
