@@ -128,7 +128,7 @@ public class ArrayController implements Initializable {
     OS os[];
 
     @FXML
-    private void criarArray(ActionEvent event) {       
+    private void criarArray(ActionEvent event) {
         if (tfTamanhoArray.getText().length() > 0) {
             x = Integer.parseInt(tfTamanhoArray.getText());
         }
@@ -146,6 +146,7 @@ public class ArrayController implements Initializable {
             alert.setContentText("Digite um número entre 1 e 10.");
             alert.show();
         }
+        tfTamanhoArray.setText("");
     }
 
     @FXML
@@ -184,26 +185,45 @@ public class ArrayController implements Initializable {
 
     @FXML
     private void buscarArray(ActionEvent event) {
-        int p = 0;
+        int p = -1;
+        
         if (tfBuscar.getText().length() > 0) {
             p = Integer.parseInt(tfBuscar.getText());
-        }
 
-        if (os[p] != null) {
-            lbNumeroOS.setText(os[p].getNumero() + "");
-            lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
-            lbNomeEmissor.setText(os[p].getNomeEmissor() + "");
-            lbDescricao.setText(os[p].getDescricaoServico() + "");
-            lbValor.setText(os[p].getValor() + "");
-            lbProduto.setText(os[p].getProduto() + "");
-            lbFormaPagamento.setText(os[p].getFormaPagamento() + "");
+            if (p <= os.length - 1) {
+
+                if (os[p] != null) {
+                    lbNumeroOS.setText(os[p].getNumero() + "");
+                    lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
+                    lbNomeEmissor.setText(os[p].getNomeEmissor() + "");
+                    lbDescricao.setText(os[p].getDescricaoServico() + "");
+                    lbValor.setText(os[p].getValor() + "");
+                    lbProduto.setText(os[p].getProduto() + "");
+                    lbFormaPagamento.setText(os[p].getFormaPagamento() + "");
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("ArrayOS");
+                    alert.setHeaderText("Posição vazia!");
+                    alert.setContentText("Não existe dados nesta posição do array.");
+                    alert.show();
+                }
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("ArrayOS");
+                alert.setHeaderText("Posição inválida!");
+                alert.setContentText("Digite um índice entre 0 e " + (os.length - 1));
+                alert.show();
+            }
+
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
-            alert.setHeaderText("Posição vazia!");
-            alert.setContentText("Não existe dados nesta posição do array.");
+            alert.setHeaderText("Nenhum número informado!");
+            alert.setContentText("Informe um número e tente novamente");
             alert.show();
         }
+
         tfBuscar.setText("");
         tfBuscar.setPromptText("");
     }
@@ -457,8 +477,8 @@ public class ArrayController implements Initializable {
         tfFormaPagamento.setText("");
         tfProduto.setText("");
     }
-    
-    private void exibirPosicaoArray() {
+
+    private void exibirIndiceArray() {
         if (os[p] != null) {
             lbNumeroOS.setText(os[p].getNumero() + "");
             lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
@@ -477,63 +497,63 @@ public class ArrayController implements Initializable {
     }
 
     @FXML
-    private void posicao0(ActionEvent event) {
+    private void indice0(ActionEvent event) {
         p = 0;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao1(ActionEvent event) {
+    private void indice1(ActionEvent event) {
         p = 1;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao2(ActionEvent event) {
+    private void indice2(ActionEvent event) {
         p = 2;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao3(ActionEvent event) {
+    private void indice3(ActionEvent event) {
         p = 3;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao4(ActionEvent event) {
+    private void indice4(ActionEvent event) {
         p = 4;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao5(ActionEvent event) {
+    private void indice5(ActionEvent event) {
         p = 5;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao6(ActionEvent event) {
+    private void indice6(ActionEvent event) {
         p = 6;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao7(ActionEvent event) {
+    private void indice7(ActionEvent event) {
         p = 7;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao8(ActionEvent event) {
+    private void indice8(ActionEvent event) {
         p = 8;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
     @FXML
-    private void posicao9(ActionEvent event) {
+    private void indice9(ActionEvent event) {
         p = 9;
-        exibirPosicaoArray();
+        exibirIndiceArray();
     }
 
 }
