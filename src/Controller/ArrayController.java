@@ -9,6 +9,7 @@ import Model.OS;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,8 +38,6 @@ public class ArrayController implements Initializable {
     private JFXButton buttonCriarArray;
     @FXML
     private Pane paneOS;
-    @FXML
-    private JFXTextField tfNumeroOS;
     @FXML
     private JFXTextField tfCidadeDestino;
     @FXML
@@ -151,24 +150,43 @@ public class ArrayController implements Initializable {
 
     @FXML
     private void adicionarOS(ActionEvent event) {
-        if (y < os.length) {
-            int numOS = Integer.parseInt(tfNumeroOS.getText());
-            String cidadeD = tfCidadeDestino.getText();
-            String nomeE = tfNomeEmissor.getText();
-            String descricaoS = tfDescricaoServico.getText();
-            double valor = Double.parseDouble(tfValor.getText());
-            String formaP = tfFormaPagamento.getText();
-            String produto = tfProduto.getText();
+        int teste = 0;
+        Random numOS = new Random();
+        if (tfCidadeDestino.getText().equals("")
+                || tfNomeEmissor.getText().equals("")
+                || tfDescricaoServico.getText().equals("")
+                || tfValor.getText().equals("")
+                || tfFormaPagamento.getText().equals("")
+                || tfProduto.getText().equals("")) {
+            teste++;
+        }
 
-            os[y] = new OS(numOS, cidadeD, nomeE, descricaoS, valor, formaP, produto);
-            preencherArrayGrafico();
-            limparTextFilds();
-            y++;
+        if (teste == 0) {
+            if (y < os.length) {
+                
+                String cidadeD = tfCidadeDestino.getText();
+                String nomeE = tfNomeEmissor.getText();
+                String descricaoS = tfDescricaoServico.getText();
+                double valor = Double.parseDouble(tfValor.getText());
+                String formaP = tfFormaPagamento.getText();
+                String produto = tfProduto.getText();
+
+                os[y] = new OS(numOS.nextInt(999), cidadeD, nomeE, descricaoS, valor, formaP, produto);
+                preencherArrayGrafico();
+                limparTextFilds();
+                y++;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("ArrayOS");
+                alert.setHeaderText("Array completo");
+                alert.setContentText("Não existe mais espaço no array.");
+                alert.show();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
-            alert.setHeaderText("Array completo");
-            alert.setContentText("Não existe mais espaço no array.");
+            alert.setHeaderText("Formulário imcompleto!");
+            alert.setContentText("Preencha todos os campos.");
             alert.show();
         }
     }
@@ -186,7 +204,7 @@ public class ArrayController implements Initializable {
     @FXML
     private void buscarArray(ActionEvent event) {
         int p = -1;
-        
+
         if (tfBuscar.getText().length() > 0) {
             p = Integer.parseInt(tfBuscar.getText());
 
@@ -469,7 +487,6 @@ public class ArrayController implements Initializable {
     private void limparTextFilds() {
         tfTamanhoArray.setText("");
         tfTamanhoArray.setPromptText("0");
-        tfNumeroOS.setText("");
         tfCidadeDestino.setText("");
         tfNomeEmissor.setText("");
         tfDescricaoServico.setText("");
