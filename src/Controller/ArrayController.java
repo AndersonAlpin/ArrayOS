@@ -162,7 +162,6 @@ public class ArrayController implements Initializable {
             os[y] = new OS(numOS, cidadeD, nomeE, descricaoS, valor, formaP, produto);
             preencherArrayGrafico();
             limparTextFilds();
-            System.err.println(y);
             y++;
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -402,34 +401,34 @@ public class ArrayController implements Initializable {
     private void preencherArrayGrafico() {
         switch (y) {
             case 0:
-                array0.setText(tfNumeroOS.getText());
+                array0.setText(os[y].getNumero() + "");
                 break;
             case 1:
-                array1.setText(tfNumeroOS.getText());
+                array1.setText(os[y].getNumero() + "");
                 break;
             case 2:
-                array2.setText(tfNumeroOS.getText());
+                array2.setText(os[y].getNumero() + "");
                 break;
             case 3:
-                array3.setText(tfNumeroOS.getText());
+                array3.setText(os[y].getNumero() + "");
                 break;
             case 4:
-                array4.setText(tfNumeroOS.getText());
+                array4.setText(os[y].getNumero() + "");
                 break;
             case 5:
-                array5.setText(tfNumeroOS.getText());
+                array5.setText(os[y].getNumero() + "");
                 break;
             case 6:
-                array6.setText(tfNumeroOS.getText());
+                array6.setText(os[y].getNumero() + "");
                 break;
             case 7:
-                array7.setText(tfNumeroOS.getText());
+                array7.setText(os[y].getNumero() + "");
                 break;
             case 8:
-                array8.setText(tfNumeroOS.getText());
+                array8.setText(os[y].getNumero() + "");
                 break;
             case 9:
-                array9.setText(tfNumeroOS.getText());
+                array9.setText(os[y].getNumero() + "");
                 break;
         }
     }
@@ -457,6 +456,24 @@ public class ArrayController implements Initializable {
         tfValor.setText("");
         tfFormaPagamento.setText("");
         tfProduto.setText("");
+    }
+    
+    private void exibirPosicaoArray() {
+        if (os[p] != null) {
+            lbNumeroOS.setText(os[p].getNumero() + "");
+            lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
+            lbNomeEmissor.setText(os[p].getNomeEmissor() + "");
+            lbDescricao.setText(os[p].getDescricaoServico() + "");
+            lbValor.setText(os[p].getValor() + "");
+            lbProduto.setText(os[p].getProduto() + "");
+            lbFormaPagamento.setText(os[p].getFormaPagamento() + "");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ArrayOS");
+            alert.setHeaderText("Posição vazia!");
+            alert.setContentText("Não existe dados nesta posição do array.");
+            alert.show();
+        }
     }
 
     @FXML
@@ -517,24 +534,6 @@ public class ArrayController implements Initializable {
     private void posicao9(ActionEvent event) {
         p = 9;
         exibirPosicaoArray();
-    }
-
-    private void exibirPosicaoArray() {
-        if (os[p] != null) {
-            lbNumeroOS.setText(os[p].getNumero() + "");
-            lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
-            lbNomeEmissor.setText(os[p].getNomeEmissor() + "");
-            lbDescricao.setText(os[p].getDescricaoServico() + "");
-            lbValor.setText(os[p].getValor() + "");
-            lbProduto.setText(os[p].getProduto() + "");
-            lbFormaPagamento.setText(os[p].getFormaPagamento() + "");
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("ArrayOS");
-            alert.setHeaderText("Posição vazia!");
-            alert.setContentText("Não existe dados nesta posição do array.");
-            alert.show();
-        }
     }
 
 }

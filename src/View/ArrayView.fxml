@@ -326,7 +326,7 @@
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <Label layoutX="294.0" layoutY="48.0" prefHeight="30.0" prefWidth="65.0" text="Posição:" textFill="#333333">
+                  <Label layoutX="304.0" layoutY="49.0" prefHeight="30.0" prefWidth="48.0" text="Índice:" textFill="#333333">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
