@@ -19,12 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -132,12 +127,17 @@ public class ArrayController implements Initializable {
         preencherCombobox();
     }
 
-    int x = 0;
-    int y = 0;
-    int p = 0;
+    int x = 0; //Variável que recebe o tamanho do array
+    int y = 0; //Variável inicial de inserção no array
+    int p = 0; //Variável que armazena o índice a ser pesquisado
 
-    OS os[];
+    OS os[]; //Declarando o array
 
+    /**
+     * Método para criar o array
+     *
+     * @param event
+     */
     @FXML
     private void criarArray(ActionEvent event) {
         if (tfTamanhoArray.getText().length() > 0) {
@@ -147,13 +147,11 @@ public class ArrayController implements Initializable {
         if (x > 0 && x <= 10) {
             os = new OS[x];
             lbArrayLenght.setText(os.length + "");
-            lbFirstIndex.setText("0");
             lbLastIndex.setText(os.length - 1 + "");
             exibirArrayGrafico();
             paneOS.setVisible(true);
             paneArray.setVisible(false);
         } else {
-            esconderArrayGrafico();
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
             alert.setHeaderText("Número inválido.");
@@ -163,10 +161,17 @@ public class ArrayController implements Initializable {
         tfTamanhoArray.setText("");
     }
 
+    /**
+     * Método para adicionar um objeto no array
+     *
+     * @param event
+     */
     @FXML
     private void adicionarOS(ActionEvent event) {
         int teste = 0;
         Random numOS = new Random();
+
+        //Teste para verificar os campos vázios
         if (tfCidadeDestino.getText().equals("")
                 || tfNomeEmissor.getText().equals("")
                 || tfDescricaoServico.getText().equals("")
@@ -178,7 +183,7 @@ public class ArrayController implements Initializable {
 
         if (teste == 0) {
             if (y < os.length) {
-                
+
                 String cidadeD = tfCidadeDestino.getText();
                 String nomeE = tfNomeEmissor.getText();
                 String descricaoS = tfDescricaoServico.getText();
@@ -206,6 +211,11 @@ public class ArrayController implements Initializable {
         }
     }
 
+    /**
+     * Método para criar um novo array
+     *
+     * @param event
+     */
     @FXML
     private void novoArray(ActionEvent event) {
         y = 0;
@@ -216,16 +226,23 @@ public class ArrayController implements Initializable {
         limparTextFilds();
     }
 
+    /**
+     * Método para buscar e exibir um objeto pelo índice do array
+     * @param event
+     */
     @FXML
     private void buscarArray(ActionEvent event) {
-        int p = -1;
-
+        int p = 0;
+        
+        //verifica se algum número foi digitado
         if (tfBuscar.getText().length() > 0) {
             p = Integer.parseInt(tfBuscar.getText());
-
+            
+            //Verifica se o número digitado é menor que o último índice do array
             if (p <= os.length - 1) {
-
-                if (os[p] != null) {
+                
+                //Verifica se o índice do array é diferente de nulo
+                if (!os[p].equals("")) {
                     lbNumeroOS.setText(os[p].getNumero() + "");
                     lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
                     lbNomeEmissor.setText(os[p].getNomeEmissor() + "");
@@ -260,8 +277,9 @@ public class ArrayController implements Initializable {
         tfBuscar.setText("");
         tfBuscar.setPromptText("");
     }
+
     
-    private void preencherCombobox(){
+    private void preencherCombobox() {
         List formaP = new ArrayList();
         formaP.add(0, "Cartão");
         formaP.add(1, "Depósito");
@@ -269,7 +287,8 @@ public class ArrayController implements Initializable {
         formaP.add(3, "Transferência");
         cbFormaPagamento.setItems(FXCollections.observableArrayList(formaP));
     }
-
+    
+    //Exibe o array gráfico de acordo com o seu tamanho
     private void exibirArrayGrafico() {
         switch (x) {
             case 1:
@@ -445,6 +464,7 @@ public class ArrayController implements Initializable {
         }
     }
 
+    //Esconde o arrray gráfico ao clicar em novo array
     private void esconderArrayGrafico() {
         array0.setVisible(false);
         array1.setVisible(false);
@@ -470,7 +490,8 @@ public class ArrayController implements Initializable {
         tituloArray.setVisible(false);
         paneInfoArray.setVisible(false);
     }
-
+    
+    //Preenche um dos arrays sempre que inserir um novo objeto
     private void preencherArrayGrafico() {
         switch (y) {
             case 0:
@@ -530,6 +551,7 @@ public class ArrayController implements Initializable {
         cbFormaPagamento.getSelectionModel().clearSelection();
     }
 
+    //Detalhar um objeto do array pelo seu índice
     private void exibirIndiceArray() {
         if (os[p] != null) {
             lbNumeroOS.setText(os[p].getNumero() + "");
@@ -547,7 +569,7 @@ public class ArrayController implements Initializable {
             lbValor.setText("null");
             lbProduto.setText("null");
             lbFormaPagamento.setText("null");
-            
+
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ArrayOS");
             alert.setHeaderText("Posição vazia.");
@@ -555,7 +577,9 @@ public class ArrayController implements Initializable {
             alert.show();
         }
     }
-
+    
+    
+    //Métodos abaixo salva o índice digitado e detalha o objeto
     @FXML
     private void indice0(ActionEvent event) {
         p = 0;
