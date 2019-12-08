@@ -19,7 +19,7 @@
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="519.0" minWidth="313.0" prefHeight="540.0" prefWidth="313.0" style="-fx-background-color: #222;" SplitPane.resizableWithParent="false">
                <children>
-                  <Pane fx:id="paneArray" prefHeight="212.0" prefWidth="313.0" visible="false">
+                  <Pane fx:id="paneArray" prefHeight="212.0" prefWidth="313.0">
                      <children>
                         <Text fill="WHITE" layoutX="132.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Array">
                            <font>
@@ -55,7 +55,7 @@
                         </GridPane>
                      </children>
                   </Pane>
-                  <Pane fx:id="paneOS" layoutX="7.0" prefHeight="519.0" prefWidth="306.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Pane fx:id="paneOS" layoutX="7.0" prefHeight="519.0" prefWidth="306.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <GridPane layoutX="11.0" layoutY="59.0" prefHeight="304.0" prefWidth="292.0">
                           <columnConstraints>
