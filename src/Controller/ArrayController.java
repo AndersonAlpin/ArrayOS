@@ -14,12 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -108,25 +114,67 @@ public class ArrayController implements Initializable {
     @FXML
     private JFXButton btBuscar;
     @FXML
-    private Text tituloArray;
-    @FXML
     private Label lbFormaPagamento;
     @FXML
     private JFXComboBox<?> cbFormaPagamento;
     @FXML
     private Label lbArrayLenght;
     @FXML
-    private Label lbFirstIndex;
-    @FXML
     private Label lbLastIndex;
     @FXML
     private Pane paneInfoArray;
+    @FXML
+    private TableView<OS> tableArray;
+    @FXML
+    private TableColumn<OS, Integer> clmNumeroOS;
+    @FXML
+    private TableColumn<OS, String> clmCidadeDestino;
+    @FXML
+    private TableColumn<OS, String> clmNomeEmissor;
+    @FXML
+    private TableColumn<OS, String> clmProduto;
+    @FXML
+    private TableColumn<OS, String> clmDescricaoServico;
+    @FXML
+    private TableColumn<OS, Double> clmValor;
+    @FXML
+    private TableColumn<OS, String> clmFormaPagamento;
+    @FXML
+    private JFXButton buttonArrayOuTabela;
+    @FXML
+    private JFXButton buttonImprimir;
+    @FXML
+    private Text titulo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         preencherCombobox();
+
+        tableArray.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                osSelecionado = (OS) newValue;
+
+                if (!osSelecionado.equals("")) {
+                    detalhesOSSelecionado();
+                }
+            }
+        });
     }
 
+    private void detalhesOSSelecionado() {
+        int i = tableArray.getSelectionModel().getSelectedIndex();
+        
+        lbNumeroOS.setText(os[i].getNumero() + "");
+        lbCidadeDestino.setText(os[i].getCidadeDestino() + "");
+        lbNomeEmissor.setText(os[i].getNomeEmissor() + "");
+        lbDescricao.setText(os[i].getDescricaoServico() + "");
+        lbValor.setText(os[i].getValor() + "");
+        lbProduto.setText(os[i].getProduto() + "");
+        lbFormaPagamento.setText(os[i].getFormaPagamento() + "");
+    }
+
+    OS osSelecionado; //Selecionar um índice da tabela
     int x = 0; //Variável que recebe o tamanho do array
     int y = 0; //Variável inicial de inserção no array
     int p = 0; //Variável que armazena o índice a ser pesquisado
@@ -171,7 +219,7 @@ public class ArrayController implements Initializable {
         int teste = 0;
         Random numOS = new Random();
 
-        //Teste para verificar os campos vázios
+        //Verifica se os campos estão vázios
         if (tfCidadeDestino.getText().equals("")
                 || tfNomeEmissor.getText().equals("")
                 || tfDescricaoServico.getText().equals("")
@@ -196,7 +244,7 @@ public class ArrayController implements Initializable {
                 limparTextFilds();
                 y++;
             } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ArrayOS");
                 alert.setHeaderText("Array completo.");
                 alert.setContentText("Não existe mais espaço no array.");
@@ -224,23 +272,25 @@ public class ArrayController implements Initializable {
         esconderArrayGrafico();
         limparArrayGrafico();
         limparTextFilds();
+        tableArray.getItems().clear();
     }
 
     /**
      * Método para buscar e exibir um objeto pelo índice do array
+     *
      * @param event
      */
     @FXML
     private void buscarArray(ActionEvent event) {
         int p = 0;
-        
+
         //verifica se algum número foi digitado
         if (tfBuscar.getText().length() > 0) {
             p = Integer.parseInt(tfBuscar.getText());
-            
+
             //Verifica se o número digitado é menor que o último índice do array
             if (p <= os.length - 1) {
-                
+
                 //Verifica se o índice do array é diferente de nulo
                 if (!os[p].equals("")) {
                     lbNumeroOS.setText(os[p].getNumero() + "");
@@ -251,7 +301,7 @@ public class ArrayController implements Initializable {
                     lbProduto.setText(os[p].getProduto() + "");
                     lbFormaPagamento.setText(os[p].getFormaPagamento() + "");
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("ArrayOS");
                     alert.setHeaderText("Posição vazia.");
                     alert.setContentText("Não existe dados nesta posição do array.");
@@ -278,7 +328,6 @@ public class ArrayController implements Initializable {
         tfBuscar.setPromptText("");
     }
 
-    
     private void preencherCombobox() {
         List formaP = new ArrayList();
         formaP.add(0, "Cartão");
@@ -287,210 +336,7 @@ public class ArrayController implements Initializable {
         formaP.add(3, "Transferência");
         cbFormaPagamento.setItems(FXCollections.observableArrayList(formaP));
     }
-    
-    //Exibe o array gráfico de acordo com o seu tamanho
-    private void exibirArrayGrafico() {
-        switch (x) {
-            case 1:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                a0.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 2:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 3:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 4:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 5:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                array4.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                a4.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 6:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                array4.setVisible(true);
-                array5.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                a4.setVisible(true);
-                a5.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 7:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                array4.setVisible(true);
-                array5.setVisible(true);
-                array6.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                a4.setVisible(true);
-                a5.setVisible(true);
-                a6.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 8:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                array4.setVisible(true);
-                array5.setVisible(true);
-                array6.setVisible(true);
-                array7.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                a4.setVisible(true);
-                a5.setVisible(true);
-                a6.setVisible(true);
-                a7.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 9:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                array4.setVisible(true);
-                array5.setVisible(true);
-                array6.setVisible(true);
-                array7.setVisible(true);
-                array8.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                a4.setVisible(true);
-                a5.setVisible(true);
-                a6.setVisible(true);
-                a7.setVisible(true);
-                a8.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-            case 10:
-                esconderArrayGrafico();
-                array0.setVisible(true);
-                array1.setVisible(true);
-                array2.setVisible(true);
-                array3.setVisible(true);
-                array4.setVisible(true);
-                array5.setVisible(true);
-                array6.setVisible(true);
-                array7.setVisible(true);
-                array8.setVisible(true);
-                array9.setVisible(true);
-                a0.setVisible(true);
-                a1.setVisible(true);
-                a2.setVisible(true);
-                a3.setVisible(true);
-                a4.setVisible(true);
-                a5.setVisible(true);
-                a6.setVisible(true);
-                a7.setVisible(true);
-                a8.setVisible(true);
-                a9.setVisible(true);
-                buttonNovoArray.setVisible(true);
-                tituloArray.setVisible(true);
-                paneInfoArray.setVisible(true);
-                break;
-        }
-    }
 
-    //Esconde o arrray gráfico ao clicar em novo array
-    private void esconderArrayGrafico() {
-        array0.setVisible(false);
-        array1.setVisible(false);
-        array2.setVisible(false);
-        array3.setVisible(false);
-        array4.setVisible(false);
-        array5.setVisible(false);
-        array6.setVisible(false);
-        array7.setVisible(false);
-        array8.setVisible(false);
-        array9.setVisible(false);
-        a0.setVisible(false);
-        a1.setVisible(false);
-        a2.setVisible(false);
-        a3.setVisible(false);
-        a4.setVisible(false);
-        a5.setVisible(false);
-        a6.setVisible(false);
-        a7.setVisible(false);
-        a8.setVisible(false);
-        a9.setVisible(false);
-        buttonNovoArray.setVisible(false);
-        tituloArray.setVisible(false);
-        paneInfoArray.setVisible(false);
-    }
-    
     //Preenche um dos arrays sempre que inserir um novo objeto
     private void preencherArrayGrafico() {
         switch (y) {
@@ -551,8 +397,263 @@ public class ArrayController implements Initializable {
         cbFormaPagamento.getSelectionModel().clearSelection();
     }
 
+    /**
+     * Método para exibir o array gráfico ou a tabela
+     *
+     * @param event
+     */
+    @FXML
+    private void arrayOuTabela(ActionEvent event) {
+        if (buttonArrayOuTabela.getText().equals("Exibir tabela")) {
+            tableArray.setVisible(true);
+            buttonImprimir.setVisible(true);
+            buttonArrayOuTabela.setText("Exibir array");
+            titulo.setText("Tabela");
+        } else {
+            tableArray.setVisible(false);
+            buttonImprimir.setVisible(false);
+            buttonArrayOuTabela.setText("Exibir tabela");
+            titulo.setText("Array");
+        }
+    }
+
+    /**
+     * Método para preencher a tabela com os dados do array
+     *
+     * @param event
+     */
+    @FXML
+    private void imprimirArray(ActionEvent event) {
+        //Informa caso a tabela esteja vazia
+        if (os[0] != null) {
+            clmNumeroOS.setCellValueFactory(new PropertyValueFactory<>("numero"));
+            clmCidadeDestino.setCellValueFactory(new PropertyValueFactory<>("cidadeDestino"));
+            clmNomeEmissor.setCellValueFactory(new PropertyValueFactory<>("nomeEmissor"));
+            clmProduto.setCellValueFactory(new PropertyValueFactory<>("produto"));
+            tableArray.setItems(listaOS());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ArrayOS");
+            alert.setHeaderText("Array vazio.");
+            alert.setContentText("Não foi possível preencher a tabela.");
+            alert.show();
+        }
+    }
+
+    /**
+     * Converte o array para ObservableList
+     *
+     * @return
+     */
+    private ObservableList<OS> listaOS() {
+        return FXCollections.observableArrayList(os);
+    }
+
+    //Exibe o array gráfico de acordo com o seu tamanho
+    private void exibirArrayGrafico() {
+        switch (x) {
+            case 1:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                a0.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 2:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 3:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 4:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 5:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                array4.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                a4.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 6:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                array4.setVisible(true);
+                array5.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                a4.setVisible(true);
+                a5.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 7:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                array4.setVisible(true);
+                array5.setVisible(true);
+                array6.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                a4.setVisible(true);
+                a5.setVisible(true);
+                a6.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 8:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                array4.setVisible(true);
+                array5.setVisible(true);
+                array6.setVisible(true);
+                array7.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                a4.setVisible(true);
+                a5.setVisible(true);
+                a6.setVisible(true);
+                a7.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 9:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                array4.setVisible(true);
+                array5.setVisible(true);
+                array6.setVisible(true);
+                array7.setVisible(true);
+                array8.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                a4.setVisible(true);
+                a5.setVisible(true);
+                a6.setVisible(true);
+                a7.setVisible(true);
+                a8.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+            case 10:
+                esconderArrayGrafico();
+                array0.setVisible(true);
+                array1.setVisible(true);
+                array2.setVisible(true);
+                array3.setVisible(true);
+                array4.setVisible(true);
+                array5.setVisible(true);
+                array6.setVisible(true);
+                array7.setVisible(true);
+                array8.setVisible(true);
+                array9.setVisible(true);
+                a0.setVisible(true);
+                a1.setVisible(true);
+                a2.setVisible(true);
+                a3.setVisible(true);
+                a4.setVisible(true);
+                a5.setVisible(true);
+                a6.setVisible(true);
+                a7.setVisible(true);
+                a8.setVisible(true);
+                a9.setVisible(true);
+                buttonNovoArray.setVisible(true);
+                titulo.setVisible(true);
+                paneInfoArray.setVisible(true);
+                break;
+        }
+    }
+
+    //Esconde o arrray gráfico ao clicar em novo array
+    private void esconderArrayGrafico() {
+        array0.setVisible(false);
+        array1.setVisible(false);
+        array2.setVisible(false);
+        array3.setVisible(false);
+        array4.setVisible(false);
+        array5.setVisible(false);
+        array6.setVisible(false);
+        array7.setVisible(false);
+        array8.setVisible(false);
+        array9.setVisible(false);
+        a0.setVisible(false);
+        a1.setVisible(false);
+        a2.setVisible(false);
+        a3.setVisible(false);
+        a4.setVisible(false);
+        a5.setVisible(false);
+        a6.setVisible(false);
+        a7.setVisible(false);
+        a8.setVisible(false);
+        a9.setVisible(false);
+        buttonNovoArray.setVisible(false);
+        titulo.setVisible(false);
+        paneInfoArray.setVisible(false);
+    }
+
     //Detalhar um objeto do array pelo seu índice
-    private void exibirIndiceArray() {
+    private void detalharIndiceArray() {
         if (os[p] != null) {
             lbNumeroOS.setText(os[p].getNumero() + "");
             lbCidadeDestino.setText(os[p].getCidadeDestino() + "");
@@ -570,74 +671,73 @@ public class ArrayController implements Initializable {
             lbProduto.setText("null");
             lbFormaPagamento.setText("null");
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("ArrayOS");
             alert.setHeaderText("Posição vazia.");
             alert.setContentText("Não existe dados nesta posição do array.");
             alert.show();
         }
     }
-    
-    
+
     //Métodos abaixo salva o índice digitado e detalha o objeto
     @FXML
     private void indice0(ActionEvent event) {
         p = 0;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice1(ActionEvent event) {
         p = 1;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice2(ActionEvent event) {
         p = 2;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice3(ActionEvent event) {
         p = 3;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice4(ActionEvent event) {
         p = 4;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice5(ActionEvent event) {
         p = 5;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice6(ActionEvent event) {
         p = 6;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice7(ActionEvent event) {
         p = 7;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice8(ActionEvent event) {
         p = 8;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
     @FXML
     private void indice9(ActionEvent event) {
         p = 9;
-        exibirIndiceArray();
+        detalharIndiceArray();
     }
 
 }
