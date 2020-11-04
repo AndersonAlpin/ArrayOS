@@ -1,2 +1,2 @@
 # ArrayOS
-Atividade de Estrutura de Dados
+Atividade da disciplina Estrutura de Dados
